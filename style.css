@@ -1,53 +1,199 @@
-/* Estilos básicos */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f2f5;
-  color: #333333;
+/* Variables del sistema de diseño */
+:root {
+  --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --surface-bg: rgba(255, 255, 255, 0.95);
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --text-light: #ffffff;
+  
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-active: #3730a3;
+  
+  --secondary: #ef4444;
+  --secondary-hover: #dc2626;
+  --secondary-active: #b91c1c;
+  
+  --outline: #e5e7eb;
+  --outline-text: #4b5563;
+  --outline-hover: #d1d5db;
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset y estilos base */
+* {
+  box-sizing: border-box;
   margin: 0;
-  padding: 20px;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  padding: 24px 16px;
+  line-height: 1.5;
 }
 
 .container {
-  max-width: 600px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Encabezado */
+header {
   text-align: center;
+  color: var(--text-light);
 }
 
 header h1 {
-  color: #222222;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+header p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Tarjeta principal */
 .card {
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border-radius: 8px;
-  padding: 24px;
-  margin: 20px 0;
+  width: 100%;
+  background: var(--surface-bg);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Display del Contador */
 .counter-display {
-  font-size: 48px;
-  font-weight: bold;
-  margin: 20px 0;
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin: 24px 0;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+  transition: transform 0.15s ease;
 }
 
+/* Botones y acciones */
 .actions {
   display: flex;
+  gap: 12px;
   justify-content: center;
-  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: 1px solid #cccccc;
-  background-color: #e0e0e0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  border: none;
   cursor: pointer;
-  border-radius: 4px;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
 }
 
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Variantes de botones */
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  background-color: #f3f4f6;
+  color: var(--outline-text);
+  border: 1px solid var(--outline);
+}
+
+.btn-outline:hover {
+  background-color: var(--outline-hover);
+  color: var(--text-main);
+}
+
+/* Footer */
 footer {
-  margin-top: 30px;
-  font-size: 14px;
-  color: #777777;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
 }
